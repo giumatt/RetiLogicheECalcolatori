@@ -1,0 +1,19 @@
+"Estendere il set di istruzioni della macchina ad accumulatore con l’operazione
+VECMOD X, definita come segue. A partire dalla locazione X+1 della RAM è
+memorizzato un vettore V di L elementi, dove L è il valore contenuto in M[X].
+Nell’accumulatore è memorizzato un intero K.
+L’operazione restituisce nell’accumulatore il numero di elementi di V che risultano
+essere diversi da AC, mentre sostituisce ogni elemento di V che risulta essere
+uguale a AC con l’ultimo elemento che lo precede che risulta essere diverso da AC
+o con 0 se tale elemento non esiste."
+
+IRx -> MAR;
+M[MAR] -> MBR, INCR(MAR) -> MAR;
+MBR -> T1;
+c: if OR(T1) == 1 then
+    M[MAR] -> MBR, AC -> A, INCR(MAR) -> MAR;
+    MBR -> B;
+    A - B -> T2;
+    if OR(T2) == 0 then
+
+     

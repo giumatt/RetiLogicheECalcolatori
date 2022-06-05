@@ -1,0 +1,32 @@
+"Estendere il set di istruzioni della macchina ad accumulatore con l'operazione
+MaxPair X definita come segue.
+A partire dalla locazione X + 1 della RAM è memorizzato un vettore V formato da
+L elementi, dove L è il valore contenuto in M[X]. L'istruzione restituisce nell'
+accumulatore l'indirizzo dell'elemento di V per cui è massima la somma con
+l'elemento che lo segue."
+
+IRx -> MAR;
+M[MAR] -> MBR, INC(MAR) -> MAR;   //Prendo la lunghezza del vettore
+MBR -> T1;                  //Indirizzo del max corrente
+MAR -> AC, DEC(T1) -> T1;   //Decremento T1 perché le coppie sono L-1
+M[MAR] -> MBR, INC(MAR) -> MAR;
+MBR -> A, MAR -> IND;       //Lettura V[0]; memorizzaz. indir. V[1] in IND
+M[MAR] -> MBR, INC(MAR) -> MAR;
+MBR -> B, DEC(T1) -> T1;    //Decremento T1 perché la prima coppia è stata elab.
+A + B -> T2;                //Max corrente
+c: if OR(T1) == 1 then
+      M[MAR] -> MBR;
+      MBR -> A;
+      A + B -> B;
+      T2 -> A;
+      A - B -> T3;
+      if T3_31 == 1 then
+        B -> T2;
+        IND -> AC;
+        MAR -> IND, MBR -> B, DEC(T1) -> T1, INC(MAR) -> MAR, goto c;
+      else
+        MAR -> IND, MBR -> B, DEC(T1) -> T1, INC(MAR) -> MAR, goto c;
+      end
+    else
+      0
+end

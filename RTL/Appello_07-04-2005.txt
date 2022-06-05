@@ -1,0 +1,25 @@
+"Estendere il set di istruzioni della macchina con l'operazione CNTVn X
+che, dati due vettori V e W di 32 elementi, posti in RAM a partire
+rispettivamente dagli indirizzi memorizzati nelle locazioni M[X] e M[X+1],
+restituisce nell'accumulatore il numero di coppie di elementi V[i] e W[i]
+con 0<=i<=31 che occupano la stessa posizione nei rispettivi vettori e
+tali che V[i] < W[i]."
+
+IRx -> MAR;               //IRx contiene l'indirizzo del primo elemento di V
+M[MAR] -> MBR, INCR(MAR) -> MAR;
+MBR -> IND1, M[MAR] -> MBR;
+MBR -> IND2, 32 -> T1, 0 -> AC;
+C: if OR(T1) == 1 then
+      IND1 -> MAR, INCR(IND1) -> IND1;
+      M[MAR] -> MBR, IND2 -> MAR, INCR(IND2) -> IND2;   //Lettura V[i]
+      MBR -> A, M[MAR] -> MBR:                          //Lettura W[i]
+      MBR -> B;
+      A - B -> A;       //Per vedere se A < o > B
+      if A31 == 1 then
+        INCR(AC) -> AC, DECR(T1) -> T1, goto c;
+      else
+        DECR(T1) -> T1, goto c:
+      end
+    else
+
+end

@@ -1,0 +1,26 @@
+;Contare il numero di bit pari ad 1 di una dword
+
+SECTION .DATA
+PAR DD F723A58BEH
+
+SECTION .BSS
+COUNT RESD 1
+
+SECTION .TEXT
+GLOBAL _START
+_START:
+    XOR EAX, EAX    ;azzero EAX
+    MOV EBX, [PAR]
+    XOR ESI, ESI
+CICLO:
+    CMP ESI, 32
+    JGE FINE
+    SHR EBX, 1
+    JNC NO
+    INC EAX
+NO:
+    INC ESI
+    JMP CICLO
+FINE:
+    MOV [CONT], EAX
+    EXIT 0

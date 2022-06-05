@@ -1,0 +1,20 @@
+"Estendere il set di istruzioni della macchina con l'operazione SUMSEQ X.
+A partire dalla locazione di memoria M[X] è memorizzata una sequenza di numeri
+interi terminata dal valore 0. L'istruzione legge gli elementi della sequenza e
+restituisce nell'accumulatore la somma degli elementi pari divisi per due e
+degli elementi dispari moltiplicati per due."
+
+IRx -> MAR, 0 -> B;
+M[MAR] -> MBR, INCR(MAR) -> MAR;
+c:  if OR(MBR) == 1 then
+      MBR -> A;
+      if MBR0 == 0 then       //Il numero è pari
+        SHR(A) -> A;
+        A + B -> B, M[MAR] -> MBR, INCR(MAR) -> MAR, goto c;
+      else                    //Il numero è dispari
+          SHL(A) -> A;
+          A + B -> B, M[MAR] -> MBR, INCR(MAR) -> MAR, goto c;
+      end
+    else
+      B -> AC;
+end

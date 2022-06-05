@@ -1,0 +1,41 @@
+"Estendere il set di istruzioni della macchina con l'operzione EOSUM X
+definita come segue. All'indirizzo X è memorizzata la lunghezza di un
+array e a sua volta memorizzata a partire dall'indirizzo X+1.
+L'istruzione calcola la differenza tra la somma degli elementi pari
+presenti nella prima metà del vettore e somma degli elementi dispari
+presenti nella seconda metà del vettore. Il valore di tale differenza è
+memorizzato nell'accumulatore."
+
+TIP:
+Per facilità andiamo a sommare gli elementi pari presenti nella prima metà
+del vettore e mano a mano andiamo a sottrarre gli elementi dispari presenti
+nella seconda metà.
+
+IRx -> MAR, 0 -> A;
+M[MAR] -> MBR, INCR(MAR) -> MAR;
+MBR -> T1;
+SHR(T1) -> T1, T1 -> T2;
+
+c1: if OR(T1) == 1 then
+      M[MAR] -> MBR, INCR(MAR) -> MAR;
+      if MBR0 == 0 then
+        MBR -> B;
+        A + B -> A, DECR(T1) -> T1, DECR(T2), goto c1;
+      else
+        DECR(T1) -> T1, DECR(T2) -> T2, goto c1;
+      end
+    else
+
+end
+
+c2: if OR(T2) == 1 then
+      M[MAR] -> MBR, INCR(MAR) -> MAR;
+      if MBR0 == 1 then
+        MBR -> B;
+        A - B -> A, DECR(T2) -> T2, goto c2;
+      else
+        DECR(T2) -> T2, goto c2;
+      end
+    else
+      A -> AC;
+end

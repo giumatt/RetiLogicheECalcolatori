@@ -1,0 +1,39 @@
+"Estendere il set di istruzioni della macchina ad accumulatore con l'operazione
+MINSUM X, definita come segue. A partire dall'indirizzo X + 1 è memorizzato
+un vettore V di 32 elementi, dove 32 è il valore presente all'indirizzo X e
+nell'accumulatore è presente un intero N. Si indichi con Ni l'i-esimo bit di N
+(si assuma che i bit siano numerati a partire da quello meno significativo).
+La funzione calcola la somma degli elementi di V[i] pari e tali che Ni = 1 e la
+somma degli elementi V[i] dispari e tali che Ni = 0. Al termine dell'esecuzione
+l'accumulatore dovrá contenere il più piccolo dei valori calcolati."
+
+IRX -> MAR, 32 -> T3;
+INCR(MAR) -> MAR, 0 -> T1, 0 -> T2;
+c: if OR(T3) == 0 then
+    M[MAR] -> MBR, INCR(MAR) -> MAR;
+    MBR -> B;
+    if AC_0 == 1 then
+      if B_0 == 0 then
+        T1 -> A;
+        A + B -> T1, DECR(T3) -> T3, SHR(AC) -> AC, goto c;
+      else
+        DECR(T3) -> T3, SHR(AC) -> AC, goto c;
+      end
+    else
+      if B_0 == 1 then
+        T2 -> A;
+        A + B -> T2, DEC(T3) -> T3, SHR(AC) -> AC, goto c;
+      else
+        DEC(T3) -> T3, SHR(AC) -> AC, goto c;
+      end
+    end
+  else
+    T1 -> A;
+    T2 -> B;
+    A - B -> A;
+    if A_31 == 1 then
+      T1 -> AC;
+    else
+      T2 -> AC;
+    end
+end

@@ -1,0 +1,35 @@
+"Estendere il set di istruzioni della macchina ad accumulatore
+con l'operazione SUMH X, definita come segue.
+A partire dalla locazione X+1 della RAM è memorizzato un vettore
+V di L elementi, dove L è contenuto in M[X] ed è un numero pari.
+L'istruzione modificherà il vettore come segue: per ogni elemento
+V[i] delle prima metà del vettore (i=0, ..., i=L/2-1), V[i] viene
+posto a V[i]+V[n/2+i] se la condizione V[i]>V[Ln/2+i] è vera,
+mentre V[i] viene posto a 0 se la predetta condizione è falsa.
+Al termine dell'istruzione la dimensione del vettore memorizzata
+in M[X] dovrà essere posta uguale a L/2 e l'accumulatore dovrà
+contenere il numero di elemento per cui la condizione è stata soddisfatta."
+
+IRx -> IND1, 0 -> AC;
+IND1 -> MAR, INC(IND1) -> IND1;          //IND1 contiene il puntatore al primo elemento
+M[MAR] -> MBR, IND1 -> B;
+MBR -> T1;
+SHR(T1) -> T1;                          //T1 contiene la lunghezza di metà array
+T1 -> A;
+A + B -> IND2;                          //IND2 contiene il puntatore all'elemento centrale
+c: if OR(T1) == 1 then                  //Fino a metà vettore
+        IND2 -> MAR;
+        M[MAR] -> MBR, IND1 -> MAR;
+        MBR -> A, M[MAR] -> MBR;        //A contiene V[i+L/2]
+        MBR -> B;                       //B contiene V[i], IND1 resta in MAR
+        A - B -> T2;
+        if T2_31 == 1 then
+            A + B -> MBR, INC(AC) -> AC;
+        else
+            0 -> MBR;
+        fi
+        MBR -> M[MAR], INC(IND1) -> IND1, INC(IND2) -> IND2, DEC(T1) -> T1, goto c;
+    else
+        0
+    fi
+end

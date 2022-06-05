@@ -1,0 +1,32 @@
+"Estendere il set di istruzioni della macchina ad accumulatore con
+l’operazione MAXDST X, definita come segue. A partire dall’indirizzo X + 1
+è presente un vettore V la cui dimensione L è specificata nella locazione
+X e un intero D è specificato nell’accumulatore.
+L’istruzione considera le coppie di elementi V[i] e V[i + 1], ∀ i ∈ [0, L−2]
+e restituisce nell’accumulatore la somma dei valori dati dalla seguente
+espressione |D − (V[i] + V[i + 1])|, ovvero:
+AC = |D−(V[0]+V[1])|+|D-(V[1]+V[2])|+. . .+|D−(V[L−2]+V[L−1])|"
+
+Per risparmiare tempo facciamo prima D-V[i] e poi il risultato - V[i+1]
+
+IRx -> MAR, 0 -> T1;
+M[MAR] -> MBR, INCR(MAR) -> MAR;
+MBR -> T2, M[MAR] -> MBR, INCR(MAR) -> MAR;
+DECR(T2) -> T2, MBR -> B;
+c: if OR(T2) == 1 then
+      M[MAR] -> MBR, AC -> A, INCR(MAR) -> MAR;
+      A - B -> A;       //D - V[i]
+      MBR -> B;         //B = V[i+1]
+      A - B -> B;
+      if B31 == 1 then
+        -B -> B;
+      else
+        0
+      end
+      T1 -> A;
+      A + B -> T1;
+      MBR -> B, DECR(T2) -> T2, goto c;
+    else
+      T1 -> AC;
+    end
+end

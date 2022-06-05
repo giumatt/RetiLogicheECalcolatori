@@ -1,0 +1,48 @@
+"Estendere il set di istuzioni della macchina ad accumulatore con
+l'istruzione MIN MAX 4 X. A partire della locazione di indirizzo X è
+presente in RAM un vettore V di 32 elementi. L'istruzione restituisce
+nell'accumulatore la differenza in valore assoluto tra il più piccolo
+elemento multiplo di 4 e il più grande elemento multiplo di 4 presente
+in V. Se nel vettore non sono presenti multipli di 4, l'istruzione
+memorizza -1 nell'accumulatore."
+
+b1 = NOT(MBR0) AND NOT(MBR1)
+
+IRx -> MAR, 32 -> T1;
+c1: if OR(T1) == 1 then
+      MA[MAR] -> MBR, INCR(MAR) -> MAR;
+      if b1 == 1 then
+        MBR -> T2;                  //T2 contiene il minimo corrente
+        MBR -> T3, DECR(T1) -> T1;  //T3 contiene il massimo corrente
+      else
+        DECR(T1) -> T1, goto c1;
+    else
+      -1 -> AC;
+    end
+end
+c2: if OR(T1) == 1 then
+      M[MAR] -> MBR, INCR(MAR) -> MAR;
+      if b1 == 1 then
+        MBR -> A;
+        T2 -> B;
+        A - B -> B;
+        if B31 == 1 then            //Verifica minimo
+          MBR -> T2, DECR(T1) -> T1, goto c2;
+        else                        //Verifica massimo
+          T3 -> B;
+          A - B -> B;
+        fi
+        if B31 == 0 then
+          MBR -> T3, DECR(T1) - T1, goto c2;
+        else
+          DECR(T1) -> T1, goto c2;
+        fi
+      else
+        DECR(T1) -> T1, goto c2;
+      fi
+    else
+      T3 -> A;
+      T2 -> B;
+      A - B -> AC;
+    fi
+end
