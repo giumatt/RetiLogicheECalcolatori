@@ -9,7 +9,7 @@
 ;
 
 
-%include "utils/utils.nasm"
+%include "utils.nasm"
 
 
 section .data
