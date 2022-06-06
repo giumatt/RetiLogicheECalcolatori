@@ -14,12 +14,10 @@ section .text
 global _start
 _start:
     mov eax, [x1]
-    jmp PROC
-L1:
+    call PROC
     mov [y1], eax
     mov eax, [x2]
-    jmp PROC
-L2:
+    call PROC
     mov [y2], eax
     exit 0
 PROC:
@@ -27,4 +25,4 @@ PROC:
     mul eax         ;eax = x^2
     add eax, ebx    ;eax = x^2 + x
     inc eax
-    jmp L1
+    ret ;aggiungere qualcosa
