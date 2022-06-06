@@ -33,6 +33,3 @@ no:
 fine:
     mov [ind_max], ebx
     exit 0
-
-;Prossima lezione da guardare:
-;   https://web.microsoftstream.com/video/6ea59d0b-d6a3-43cc-a279-5c831144d016
