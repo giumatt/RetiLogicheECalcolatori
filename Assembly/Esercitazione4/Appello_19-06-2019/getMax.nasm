@@ -49,10 +49,3 @@ fine:
     mov [ebp+max], bx
     popad
     pop ebpret 8
-
-
-
-
-
-;Prossima lezione:
-;       https://web.microsoftstream.com/video/3d1b4834-df92-426f-8093-b0294dedd6b9
