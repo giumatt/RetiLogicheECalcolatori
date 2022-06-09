@@ -1,0 +1,17 @@
+{
+    "cSpell.enableFiletypes": [
+        "asm-intel-x86-generic"
+    ],
+    "cSpell.language": "en,it,it-IT",
+    "cSpell.words": [
+        "movzx",
+        "nasm",
+        "popad",
+        "printb",
+        "printw",
+        "pushad",
+        "resb",
+        "resw",
+        "VMOD"
+    ]
+}

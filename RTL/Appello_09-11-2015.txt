@@ -8,10 +8,11 @@ compresi tra 0 ed i (estremi inclusi)."
 
 IRx -> MAR, AC -> T1, 0 -> B;
 c: if OR(T1) == 1 then
-    M[MAR] -> MBR;
-    MBR -> A;
-    A + B -> MBR;
-    A + B -> B, MBR -> M[MAR], INCR(MAR) -> MAR, DECR(T1) -> T1, goto c;
-   else
-    0
+        M[MAR] -> MBR;
+        MBR -> A;
+        A + B -> MBR;
+        A + B -> B, MBR -> M[MAR], INCR(MAR) -> MAR, DEC(T1) -> T1, goto c;
+    else
+        0
+    fi
 end

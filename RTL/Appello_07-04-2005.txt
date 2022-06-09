@@ -21,5 +21,4 @@ C: if OR(T1) == 1 then
         DECR(T1) -> T1, goto c:
       end
     else
-
 end

@@ -1,0 +1,25 @@
+"Estendere il set di istruzioni della macchina ad accumulatore con l'operazione
+VMOD X, definita come segue.
+A partire dalla locazione X+1 della RAM è memorizzato un vettore di L elementi,
+dove L è il valore contenuto in M[X].
+L`istruzione modificherà il vettore sostituendo ad ogni elemento dispari V[i]
+di V il valore (V[i]*2)+3 e memorizzerà il numero di sostituzioni effettuate
+nell'accumulatore."
+
+IRx -> MAR;
+M[MAR] -> MBR, INCR(MAR) -> MAR;
+MBR -> T1, 0 -> T2, 3 -> A;
+c: if OR(T1) == 1 then
+        M[MAR] -> MBR
+        MBR -> AC;
+        if AC_0 == 1 then
+            SHL(B) -> B;
+            A + B -> MBR;
+            MBR -> M[MAR], INC(MAR) -> MAR, INC(T2) -> T2, DEC(T1) -> T1, goto c;
+        else
+            INC(MAR) -> MAR, DEC(T1) -> T1, goto c;
+        fi
+    else
+        T2 -> AC;
+    fi
+end

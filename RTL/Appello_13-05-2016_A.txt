@@ -3,7 +3,7 @@ con l'operazione VMOD X, definita come segue.
 A partire dalla locazione X+1 della RAM è memorizzato un vettore
 di L elementi, dove L è il valore contenuto in M[X].
 L'istruzione modificherà il vettore sostituendo ad ogni elemento negativo
-V[i] di V il valore -(2*V[i]) e memorizzerà il numero di sostutuzioni
+V[i] di V il valore -(2*V[i]) e memorizzerà il numero di sostituzioni
 effettuate nell'accumulatore."
 
 IRx -> MAR;
@@ -15,9 +15,9 @@ c: if OR(T1) == 1 then
     if B31 == 1 then
         -B -> MBR, INCR(T2) -> T2;
         SHL(MBR) -> MBR;
-        MBR -> M[MAR], INCR(MAR) -> MAR, DECR(T1) -> T1, goto c;
+        MBR -> M[MAR], INCR(MAR) -> MAR, DEC(T1) -> T1, goto c;
     else
-        INCR(MAR) -> MAR, DECR(T1) -> T1, goto c;
+        INCR(MAR) -> MAR, DEC(T1) -> T1, goto c;
     fi
    else
     T2 -> AC;
