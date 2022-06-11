@@ -8,22 +8,22 @@ L'istruzione calcola la somma del valore assoluto degli interi presenti in
 memoria i cui indirizzi sono presenti in V e restituisce
 tale somma nell'accumulatore."
 
-IRx -> MAR, 0 -> A;
-M[MAR] -> MBR, INCR -> MAR
-MBR -> IND, MBR -> T1;
+IRx -> MAR, 0 -> AC;
+M[MAR] -> MBR, INC(MAR) -> MAR;
+MAR -> IND, MBR -> T1:
 c: if OR(T1) == 1 then
-    IND -> MAR, INCR(IND) -> IND;
-    M[MAR] -> MBR;
-    MBR -> MAR;
-    M[MAR] -> MBR;
-    MBR -> B;
-    if B_31 == 1 then
-      -B -> B;
-      A + B -> A, DECR(T1) -> T1, goto c;
+        IND -> MAR, INC(IND) -> IND;
+        M[MAR] -> MBR;
+        MBR -> MAR;
+        M[MAR] -> MBR;
+        MBR -> B;
+        if B_31 == 1 then
+            -B -> B;
+            A + B -> A, DEC(T1) -> T1, goto c;
+        else
+            A + B -> A, DEC(T1) -> T1, goto c;
+        fi
     else
-      A + B -> A, DECR(T1) -> T1, goto c;
+        A -> AC;
     fi
-   else
-    A -> AC
-   fi
 end

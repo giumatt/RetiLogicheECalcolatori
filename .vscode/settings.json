@@ -4,6 +4,8 @@
     ],
     "cSpell.language": "en,it,it-IT",
     "cSpell.words": [
+        "dword",
+        "idiv",
         "movzx",
         "nasm",
         "popad",
@@ -12,6 +14,7 @@
         "pushad",
         "resb",
         "resw",
+        "SUMV",
         "VMOD"
     ]
 }
