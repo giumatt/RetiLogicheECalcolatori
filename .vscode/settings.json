@@ -10,6 +10,7 @@
         "nasm",
         "popad",
         "printb",
+        "printdw",
         "printw",
         "pushad",
         "resb",
