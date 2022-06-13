@@ -1,5 +1,5 @@
 ;Scrivere una procedura Assembly che riceve un vettore V di word
-;di lunghezza n, con n dispari, e conta il numeero di coppie di elementi
+;di lunghezza n, con n dispari, e conta il numero di coppie di elementi
 ;(V[i], V[i+1+n/2]) tali che la loro differenza in valore assoluto è maggiore
 ;dell'elemento centrale del vettore, cioè:
 ;       |V[i] - V[i+1+n/2]| > V[n/2] per ogni i app. [0, ..., n/2-1]

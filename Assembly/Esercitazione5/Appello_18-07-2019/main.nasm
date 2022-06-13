@@ -1,4 +1,4 @@
-;Scrivere una procedura Assebly che riceve un vettore V di word
+;Scrivere una procedura Assembly che riceve un vettore V di word
 ;e un valore K e restituisce il numero di coppie di elementi
 ;(V[i], V[(i+1)%n]), dove n è la lunghezza di V, tali che la loro somma
 ;non è multipla di 2^k. Scrivere inoltre il programma principale che invoca
