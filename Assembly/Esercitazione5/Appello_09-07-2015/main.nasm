@@ -1,6 +1,6 @@
-;Scrivere una proceduda Assembly che riceve due vettori V e W della
+;Scrivere una procedura Assembly che riceve due vettori V e W della
 ;stessa dimensione n e restituisce un vettore T che contiene:
-;- la somma degli elementi di indici pari di V e W;
+;- la somma degli elementi di indice pari di V e W;
 ;- la copia degli elementi di indice dispari in due celle contigue.
 
 %include "../../utils/utils.nasm"
