@@ -7,19 +7,19 @@ V[i] di V il valore -(2*V[i]) e memorizzerà il numero di sostituzioni
 effettuate nell'accumulatore."
 
 IRx -> MAR;
-M[MAR] -> MBR, INCR(MAR) -> MAR;
+M[MAR] -> MBR, INC(MAR) -> MAR;
 MBR -> T1, 0 -> T2;
 c: if OR(T1) == 1 then
-    M[MAR] -> MBR;
-    MBR -> B;
-    if B31 == 1 then
-        -B -> MBR, INCR(T2) -> T2;
-        SHL(MBR) -> MBR;
-        MBR -> M[MAR], INCR(MAR) -> MAR, DEC(T1) -> T1, goto c;
-    else
-        INCR(MAR) -> MAR, DEC(T1) -> T1, goto c;
-    fi
+        M[MAR] -> MBR;
+        MBR -> B;
+        if B_31 == 1 then
+            -B -> MBR, INC(T2) -> T2;
+            SHL(MBR) -> MBR;
+            MBR -> M[MAR], INC(MAR) -> MAR, DEC(T1) -> T1, goto c;
+        else
+            INC(MAR) -> MAR, DEC(T1) -> T1, goto c;
+        fi
    else
-    T2 -> AC;
+        T2 -> AC;
    fi
 end

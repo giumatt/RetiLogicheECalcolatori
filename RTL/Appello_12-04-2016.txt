@@ -1,4 +1,4 @@
-"Estendere il set di istruzioni della macchina con l'operzione EOSUM X
+"Estendere il set di istruzioni della macchina con l'operazione EOSUM X
 definita come segue. All'indirizzo X è memorizzata la lunghezza di un
 array e a sua volta memorizzata a partire dall'indirizzo X+1.
 L'istruzione calcola la differenza tra la somma degli elementi pari
@@ -12,28 +12,28 @@ del vettore e mano a mano andiamo a sottrarre gli elementi dispari presenti
 nella seconda metà.
 
 IRx -> MAR, 0 -> A;
-M[MAR] -> MBR, INCR(MAR) -> MAR;
+M[MAR] -> MBR, INC(MAR) -> MAR;
 MBR -> T1;
 SHR(T1) -> T1, T1 -> T2;
 
 c1: if OR(T1) == 1 then
-        M[MAR] -> MBR, INCR(MAR) -> MAR;
-        if MBR0 == 0 then
+        M[MAR] -> MBR, INC(MAR) -> MAR;
+        if MBR_0 == 0 then
           MBR -> B;
-          A + B -> A, DECR(T1) -> T1, DECR(T2), goto c1;
+          A + B -> A, DEC(T1) -> T1, DEC(T2), goto c1;
         else
-          DECR(T1) -> T1, DECR(T2) -> T2, goto c1;
+          DEC(T1) -> T1, DEC(T2) -> T2, goto c1;
         fi
     else
 end
 
 c2: if OR(T2) == 1 then
-        M[MAR] -> MBR, INCR(MAR) -> MAR;
-        if MBR0 == 1 then
+        M[MAR] -> MBR, INC(MAR) -> MAR;
+        if MBR_0 == 1 then
             MBR -> B;
-            A - B -> A, DECR(T2) -> T2, goto c2;
+            A - B -> A, DEC(T2) -> T2, goto c2;
         else
-            DECR(T2) -> T2, goto c2;
+            DEC(T2) -> T2, goto c2;
         fi
     else
       A -> AC;

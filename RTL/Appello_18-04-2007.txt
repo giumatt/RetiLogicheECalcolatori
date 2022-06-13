@@ -5,16 +5,17 @@ restituisce nell'accumulatore la somma degli elementi pari divisi per due e
 degli elementi dispari moltiplicati per due."
 
 IRx -> MAR, 0 -> B;
-M[MAR] -> MBR, INCR(MAR) -> MAR;
-c:  if OR(MBR) == 1 then
+M[MAR] -> MBR, INC(MAR) -> MAR;
+c: if OR(MBR) == 1 then
       MBR -> A;
-      if MBR0 == 0 then       //Il numero è pari
+      if MBR_0 == 0 then                                      //Il numero è pari
         SHR(A) -> A;
-        A + B -> B, M[MAR] -> MBR, INCR(MAR) -> MAR, goto c;
-      else                    //Il numero è dispari
+        A + B -> B, M[MAR] -> MBR, INC(MAR) -> MAR, goto c;
+      else                                                   //Il numero è dispari
           SHL(A) -> A;
-          A + B -> B, M[MAR] -> MBR, INCR(MAR) -> MAR, goto c;
-      end
-    else
+          A + B -> B, M[MAR] -> MBR, INC(MAR) -> MAR, goto c;
+      fi
+   else
       B -> AC;
+   fi
 end

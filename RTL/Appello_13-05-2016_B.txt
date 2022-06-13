@@ -7,7 +7,7 @@ di V il valore (V[i]*2)+3 e memorizzerà il numero di sostituzioni effettuate
 nell'accumulatore."
 
 IRx -> MAR;
-M[MAR] -> MBR, INCR(MAR) -> MAR;
+M[MAR] -> MBR, INC(MAR) -> MAR;
 MBR -> T1, 0 -> T2, 3 -> A;
 c: if OR(T1) == 1 then
         M[MAR] -> MBR

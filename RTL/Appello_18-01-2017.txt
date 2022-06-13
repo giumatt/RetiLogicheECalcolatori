@@ -4,24 +4,24 @@ A partire dalla locazione X+1 della RAM è memorizzato un vettore di L
 elementi, dove L è il valore contenuto in M[X], mentre nell’accumulatore è
 memorizzato un valore k. L'istruzione memorizzerà nell'accumulatore il
 numero di coppie di elementi consecutivi del vettore, la cui somma è pari a
-K."
+k."
 
 IRx -> MAR; 0 -> T3;
-M[MAR] -> MBR, INCR(MAR) -> MAR;
-MBR -> T1, M[MAR] -> MBR, INCR(MAR) -> MAR;
+M[MAR] -> MBR, INC(MAR) -> MAR;
+MBR -> T1, M[MAR] -> MBR, INC(MAR) -> MAR;
 c: if OR(T1) == 1 then
-    MBR -> A;                           //prendo il primo elemento
-    M[MAR] -> MBR, INCR(MAR) -> MAR;                
-    MBR -> B;                                                //prendo il secondo elemento
-    A + B -> A;
-    AC -> B;
-    A - B -> T2;
-    if OR(T2) == 1 then
-     MBR -> , DECR(T1) -> T1, goto c;
-    else
-     INCR(T3) -> T3, DECR(T1) -> T1, goto c;
-    fi
+        MBR -> A;                                                 //prendo il primo elemento
+        M[MAR] -> MBR, INC(MAR) -> MAR;                
+        MBR -> B;                                                //prendo il secondo elemento
+        A + B -> A;
+        AC -> B;
+        A - B -> T2;
+        if OR(T2) == 1 then
+            DEC(T1) -> T1, goto c;
+        else
+            INC(T3) -> T3, DEC(T1) -> T1, goto c;
+        fi
    else
-    T3 -> AC;
+        T3 -> AC;
    fi
 end

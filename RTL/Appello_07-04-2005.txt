@@ -6,19 +6,21 @@ con 0<=i<=31 che occupano la stessa posizione nei rispettivi vettori e
 tali che V[i] < W[i]."
 
 IRx -> MAR;               //IRx contiene l'indirizzo del primo elemento di V
-M[MAR] -> MBR, INCR(MAR) -> MAR;
+M[MAR] -> MBR, INC(MAR) -> MAR;
 MBR -> IND1, M[MAR] -> MBR;
 MBR -> IND2, 32 -> T1, 0 -> AC;
-C: if OR(T1) == 1 then
-      IND1 -> MAR, INCR(IND1) -> IND1;
-      M[MAR] -> MBR, IND2 -> MAR, INCR(IND2) -> IND2;   //Lettura V[i]
-      MBR -> A, M[MAR] -> MBR:                          //Lettura W[i]
-      MBR -> B;
-      A - B -> A;       //Per vedere se A < o > B
-      if A31 == 1 then
-        INCR(AC) -> AC, DECR(T1) -> T1, goto c;
-      else
-        DECR(T1) -> T1, goto c:
-      end
-    else
+c: if OR(T1) == 1 then
+        IND1 -> MAR, INC(IND1) -> IND1;
+        M[MAR] -> MBR, IND2 -> MAR, INC(IND2) -> IND2;   //Lettura V[i]
+        MBR -> A, M[MAR] -> MBR:                         //Lettura W[i]
+        MBR -> B;
+        A - B -> A;       //Per vedere se A < o > B
+        if A_31 == 1 then
+          INC(AC) -> AC, DEC(T1) -> T1, goto c;
+        else
+          DEC(T1) -> T1, goto c:
+        fi
+   else
+      0
+   fi
 end

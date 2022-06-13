@@ -3,7 +3,7 @@
 %include "../../utils/utils.nasm"
 
 section .data
-    ret equ 18
+    ris equ 18
     V equ 14
     n equ 10
     k equ 8
@@ -13,7 +13,7 @@ global proc
 proc:
     push ebp
     mov ebp, esp
-    pusad
+    pushad
     mov eax, [ebp+V]
     mov edi, [ebp+n]
     sub edi, 2
@@ -48,7 +48,7 @@ proc:
 .terminazione:
     mov cx, 0
 fine:
-    mov [ebp+ret], cx
+    mov [ebp+ris], cx
     popad
     pop ebp
     ret 14

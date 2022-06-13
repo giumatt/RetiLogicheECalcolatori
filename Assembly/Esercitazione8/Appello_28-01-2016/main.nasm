@@ -3,7 +3,7 @@
 ;sia presente una sequenza di 3 elementi contigui pari la cui somma
 ;sia maggiore di k. In tal caso, la procedura restituirà 1, in caso
 ;contrario 0. Scrivere inoltre il programma principale che invochi
-;opporunamente la procedura descritta.
+;opportunamente la procedura descritta.
 
 %include "../../utils/utils.nasm"
 
@@ -13,16 +13,16 @@ section .data
     k dw 5
 
 section .bss
-    ret resw 1
+    ris resw 1
 
 section .text
 global _start
 extern proc
 _start:
-    push ret
+    push ris
     push V
     push dword n
     push word [k]
     call proc
-    printw [ret]
+    printw [ris]
     exit 0

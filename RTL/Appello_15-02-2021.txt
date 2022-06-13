@@ -6,14 +6,14 @@ accumulatore l'indirizzo dell'elemento di V per cui è massima la somma con
 l'elemento che lo segue."
 
 IRx -> MAR;
-M[MAR] -> MBR, INC(MAR) -> MAR;   //Prendo la lunghezza del vettore
-MBR -> T1;                  //Indirizzo del max corrente
-MAR -> AC, DEC(T1) -> T1;   //Decremento T1 perché le coppie sono L-1
+M[MAR] -> MBR, INC(MAR) -> MAR;       //Prendo la lunghezza del vettore
+MBR -> T1;                           //Indirizzo del max corrente
+MAR -> AC, DEC(T1) -> T1;           //Decremento T1 perché le coppie sono L-1
 M[MAR] -> MBR, INC(MAR) -> MAR;
-MBR -> A, MAR -> IND;       //Lettura V[0]; memorizzaz. indir. V[1] in IND
+MBR -> A, MAR -> IND;              //Lettura V[0]; memorizzaz. indir. V[1] in IND
 M[MAR] -> MBR, INC(MAR) -> MAR;
-MBR -> B, DEC(T1) -> T1;    //Decremento T1 perché la prima coppia è stata elab.
-A + B -> T2;                //Max corrente
+MBR -> B, DEC(T1) -> T1;          //Decremento T1 perché la prima coppia è stata elab.
+A + B -> T2;                     //Max corrente
 c: if OR(T1) == 1 then
       M[MAR] -> MBR;
       MBR -> A;
@@ -26,7 +26,8 @@ c: if OR(T1) == 1 then
         MAR -> IND, MBR -> B, DEC(T1) -> T1, INC(MAR) -> MAR, goto c;
       else
         MAR -> IND, MBR -> B, DEC(T1) -> T1, INC(MAR) -> MAR, goto c;
-      end
-    else
+      fi
+   else
       0
+   fi
 end

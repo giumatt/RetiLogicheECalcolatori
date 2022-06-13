@@ -8,10 +8,10 @@ uguale a AC con l’ultimo elemento che lo precede che risulta essere diverso da
 o con 0 se tale elemento non esiste."
 
 IRx -> MAR;
-M[MAR] -> MBR, INCR(MAR) -> MAR;
+M[MAR] -> MBR, INC(MAR) -> MAR;
 MBR -> T1;
 c: if OR(T1) == 1 then
-    M[MAR] -> MBR, AC -> A, INCR(MAR) -> MAR;
+    M[MAR] -> MBR, AC -> A, INC(MAR) -> MAR;
     MBR -> B;
     A - B -> T2;
     if OR(T2) == 0 then
