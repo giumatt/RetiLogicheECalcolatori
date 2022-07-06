@@ -1,0 +1,30 @@
+"Estendere il set di istruzioni della macchina ad accumulatore con l’operazione 
+BLK x, definita come segue. In X è presente la lunghezza L di un vettore V,
+memorizzato in RAM a partire dall'indirizzo X+1.
+Mentre nell'accumulatore AC è presente un intero K positivo.
+Il vettore è logicamente diviso a blocchi: ogni blocco b termina con uno 0 (zero).
+La funzione deve contare il numero di blocchi, la cui somma degli elementi 
+contenuti in esso è maggiore di K."
+
+IRx -> MAR, 0 -> B, 0 -> T2;
+M[MAR] -> MBR, INC(MAR) -> MAR;         //Lunghezza del vettore
+MBR -> T1;                              //Lunghezza in T1, in MBR primo elemento del vettore
+DEC(T1) -> T1;
+c: if OR(T1) == 1 then
+        M[MAR] -> MBR;
+        MBR -> A;
+        if OR(A) == 1 then
+            A + B -> B;
+        else
+            AC -> A;
+            A - B -> B;                 //A = K B = somma
+            if B_31 == 1 then
+                INC(T2) -> T2, INC(MAR) -> MAR, DEC(T1) -> T1, goto c;
+            else
+                0 -> B, INC(MAR) -> MAR, DEC(T1) -> T1, goto c;
+            fi
+        fi
+    else
+        T2 -> AC;
+    fi
+end
