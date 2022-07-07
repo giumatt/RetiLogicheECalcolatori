@@ -26,8 +26,8 @@ proc:
     xor esi, esi
     mov ax, [ecx]               ;ax = V[0]
     movzx edi, [ebp+n]
-    dec edi
-    add ax, [ecx+edi*2]
+    dec edi                     ; edi = n - 1
+    add ax, [ecx+edi*2]         ;ax = V[0] + V[n - 1] è l'ultima coppia da confrontare
     cwd
     idiv bx
     cmp dx, 0
