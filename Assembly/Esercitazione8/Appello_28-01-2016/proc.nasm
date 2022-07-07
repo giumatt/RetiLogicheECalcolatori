@@ -23,7 +23,7 @@ proc:
     cmp esi, edi
     jge fine
     mov cx, [eax+esi*2]
-    ;controllo se il valore sia pos o neg
+    ;controllo se il valore sia pari o dispari
     shr cx, 1
     ;controllo se la terna sia composta da numeri pari
     jc .continua
