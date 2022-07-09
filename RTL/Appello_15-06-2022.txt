@@ -28,3 +28,27 @@ c: if OR(T1) == 1 then
         T2 -> AC;
     fi
 end
+
+SOLUZIONE PROF (APPROX.)
+
+IRx -> MAR, 0 -> T2, 0 -> B;
+M[MAR] -> MBR, INC(MAR) -> MAR;
+MBR -> T1;
+c: if OR(T1) == 1 then
+        M[MAR] -> MBR, INC(MAR) -> MBR;
+        if OR(MBR) == 0 then
+            AC -> A;
+            A - B -> A;
+            if A_31 == 1 then
+                INC(T2) -> T2, 0 -> B, DEC(T1) -> T1, goto c;
+            else
+                0 -> B, DEC(T1) -> T1, goto c;
+            fi
+        else
+            MBR -> A;
+            A + B, DEC(T1) -> T1, goto c;
+        fi
+    else
+        T2 -> AC;
+    fi
+end
