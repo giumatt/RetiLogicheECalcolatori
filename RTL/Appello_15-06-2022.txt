@@ -46,7 +46,7 @@ c: if OR(T1) == 1 then
             fi
         else
             MBR -> A;
-            A + B, DEC(T1) -> T1, goto c;
+            A + B -> B, DEC(T1) -> T1, goto c;
         fi
     else
         T2 -> AC;

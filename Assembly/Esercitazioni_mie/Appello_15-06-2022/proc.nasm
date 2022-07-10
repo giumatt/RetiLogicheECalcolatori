@@ -30,7 +30,7 @@ proc:
     cmp esi, edi
     jge .fine
     mov ax, [ebx+esi*2]
-    cwd
+    cwd                     ;converte word in doubleword
     div word [ebp+h]
     movzx edx, dx
     inc [ecx+edx*2]
