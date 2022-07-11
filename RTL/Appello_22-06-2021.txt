@@ -12,13 +12,13 @@ M[MAR] -> MBR, INC(MAR) -> MAR;
 MBR -> T1, M[MAR] -> MBR;
 INC(MAR) -> MAR, DEC(T1) -> T1;
 c: if OR(T1) == 1 then
-        MBR -> B, M[MAR] -> MBR;
-        MBR -> A;
-        A - B -> A;
+        MBR -> B, M[MAR] -> MBR;            //Prendo V[i]
+        MBR -> A;                           //Prendo V[i+1]
+        A - B -> A;                         //V[i+1] - V[i]
         if A_31 == 1 then
             DEC(MAR) -> MAR;
-            MBR -> M[MAR];
-            B -> MBR, INC(MAR) -> MAR;
+            MBR -> M[MAR];                  //A -> V[i]
+            B -> MBR, INC(MAR) -> MAR;      //B -> V[i+1]
             MBR -> M[MAR], INC(T2) -> T2;
             INC(MAR) -> MAR, DEC(T1) -> T1, goto c;
         else
