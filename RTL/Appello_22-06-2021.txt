@@ -1,0 +1,30 @@
+"Estendere il set di istruzioni della macchina ad accumulatore
+con l’operazione BUBBLE X, definita come segue.
+A partire dall’indirizzo X + 1 è presente un vettore V la cui dimensione
+L è specificata nella locazione X. La funzione modifica il vettore V come segue:
+per ogni coppia (V[i], V[i + 1]) tale che V [i] > V [i + 1], la funzione scambia gli
+elementi della coppia.
+Al termine della sua esecuzione, la funzione restituisce nell’accumulatore
+il numero di scambi effettuati."
+
+IRx -> MAR, O -> T2;
+M[MAR] -> MBR, INC(MAR) -> MAR;
+MBR -> T1, M[MAR] -> MBR;
+INC(MAR) -> MAR, DEC(T1) -> T1;
+c: if OR(T1) == 1 then
+        MBR -> B, M[MAR] -> MBR;
+        MBR -> A;
+        A - B -> A;
+        if A_31 == 1 then
+            DEC(MAR) -> MAR;
+            MBR -> M[MAR];
+            B -> MBR, INC(MAR) -> MAR;
+            MBR -> M[MAR], INC(T2) -> T2;
+            INC(MAR) -> MAR, DEC(T1) -> T1, goto c;
+        else
+            INC(MAR) -> MAR, DEC(T1) -> T1, goto c;
+        fi
+    else
+        T2 -> AC;
+    fi
+end
